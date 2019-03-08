@@ -13,6 +13,8 @@
 
 Route::get('/', 'Listcontroller@index');
 
-Route::resource('list', 'Listcontroller');
-Route::resource('task', 'Taskcontroller');
+Route::resources([
+    'list' => 'Listcontroller',
+    'task' => 'Taskcontroller'
+]);
 

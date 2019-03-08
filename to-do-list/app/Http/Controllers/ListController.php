@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Validator;
 use Illuminate\Http\Request;
+use App\Lists;
+use Session;
 
 class ListController extends Controller
 {
@@ -14,7 +16,7 @@ class ListController extends Controller
     public function index()
     {
         $lists = Lists::all();
-        return view('list.index',['lists' => $lists]);
+        return view('list.index',compact('lists'));
     }
 
     /**
@@ -46,7 +48,8 @@ class ListController extends Controller
      */
     public function show($id)
     {
-        //
+        $list = Lists::find($id);
+        return view('list.show',compact('list'));
     }
 
     /**
