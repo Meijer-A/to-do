@@ -26,7 +26,7 @@ class ListController extends Controller
      */
     public function create()
     {
-        //
+        return view('list.create');
     }
 
     /**
@@ -37,7 +37,25 @@ class ListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $rules = array(
+            'name'       => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('nerds/create');
+        } else {
+            // store
+            $nerd = new Nerd;
+            $nerd->name       = Input::get('name');
+            $nerd->save();
+
+            // redirect
+            return Redirect::to('list');
+        }
     }
 
     /**

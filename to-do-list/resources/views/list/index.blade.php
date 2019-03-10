@@ -37,7 +37,7 @@
             <tr>
                 <td>{{ $list->id }}</td>
                 <td><a href="{{URL::to('list/' . $list->id)}}">{{ $list->name }}</a></td>
-                <td class=>
+                <td class="actions">
                     <a class="" href="{{ URL::to('list/' . $list->id . '/edit') }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 
                     <button type="submit" value="Delete" class="btn btn-link "><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
