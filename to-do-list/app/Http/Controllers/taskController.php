@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Input;
+use Validator;
 use Illuminate\Http\Request;
+use App\Tasks;
+use Session;
+
 
 class taskController extends Controller
 {
@@ -13,7 +18,8 @@ class taskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Tasks::all();
+        return view('to-do.index',compact('tasks'));
     }
 
     /**
@@ -34,7 +40,28 @@ class taskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'description'       => 'required',
+            'duration'       => 'required',
+            'status'       => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return redirect('list/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        } else {
+            $lists = new Tasks;
+            $lists->description       = Input::get('name');
+            $lists->duration       = Input::get('name');
+            $lists->status       = Input::get('name');
+            $lists->save();
+
+            Session::flash('message', $lists->title .' is aangemaakt :)');
+            return redirect('list');
+        }
     }
 
     /**

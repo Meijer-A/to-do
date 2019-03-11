@@ -12,9 +12,12 @@
 */
 
 Route::get('/', 'Listcontroller@index');
+Route::get('/task', 'Taskcontroller@index');
 
 Route::resources([
     'list' => 'Listcontroller',
     'task' => 'Taskcontroller'
 ]);
+
+Auth::routes();
 

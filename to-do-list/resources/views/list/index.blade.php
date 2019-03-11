@@ -12,12 +12,6 @@
 	       	<li><a href="#addSong" class="btn btn-success" data-toggle="modal"><span>Add List</span></a></li>
 	    </ul>
 	</nav>
-<!-- 	@if (Session::has('message'))
-	<div class="alert alert-danger ">
-	{{ HTML::ul($errors->all()) }}
-	<a href="#" class="close float-right" data-dismiss="alert">×</a>
-	</div>
-	@endif  -->
 	@if (Session::has('message'))
     <div class="alert alert-info ">
     	{{ Session::get('message') }} 
@@ -37,10 +31,11 @@
             <tr>
                 <td>{{ $list->id }}</td>
                 <td><a href="{{URL::to('list/' . $list->id)}}">{{ $list->name }}</a></td>
-                <td class="actions">
+                <td class=>
                     <a class="" href="{{ URL::to('list/' . $list->id . '/edit') }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-
-                    <button type="submit" value="Delete" class="btn btn-link "><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+					{{ Form::model($list, array('route' => array('list.destroy', $list->id), 'method' => 'DELETE')) }}
+						<button type="submit" value="Delete" class="btn btn-link float-right"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+					{{ Form::close() }}	
 
                 </td>
             </tr>
@@ -48,7 +43,7 @@
         </tbody>
     </table>
 </div>
-<div id="addSong" class="modal fade">
+<div class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">						
@@ -56,7 +51,17 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-		
+				{{ Form::open(array('url' => 'list')) }}
+
+					<div class="form-group">
+						{{ Form::label('name', 'name') }}
+						{{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
+					</div>
+
+					{{ Form::submit('voeg lijst toe', array('class' => 'btn btn-primary')) }}
+
+				{{ Form::close() }}
+				</div>
 			</div>
 		</div>
 	</div>
