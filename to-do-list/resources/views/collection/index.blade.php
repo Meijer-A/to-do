@@ -3,12 +3,11 @@
 @section('content')
 <div class="container">
 
-	<h1>All the swagas</h1>
+	<h1>All lists</h1>
 	
 	<nav class="navbar navbar-inverse">
 	    <ul class="nav navbar-nav">
-	        <li><a href="{{ URL::to('collection') }}">View All Collections</a></li>
-	        <li><a href="{{ URL::to('collection/create') }}">Add Collection</a>
+	        <li><a href="{{ URL::to('collection/create') }}">Add list</a>
 	    </ul>
 	</nav>
 	@if (Session::has('message'))

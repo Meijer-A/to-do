@@ -10,7 +10,6 @@
 
 td.actions > form {
   display: inline;
-  float: right;
 }
 
 td.actions > form button {
@@ -19,6 +18,15 @@ td.actions > form button {
 
 .navbar {
   padding-left: 0 !important;
+}
+
+.sort {
+  cursor: pointer;
+}
+
+.sort:hover {
+  -webkit-text-decoration: underline green;
+          text-decoration: underline green;
 }
 
 /*!

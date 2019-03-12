@@ -16,13 +16,13 @@
     	<a href="#" class="close float-right" data-dismiss="alert">×</a>
     </div>
 	@endif
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover" id="taskTable">
         <thead>
             <tr>
                 <th>id</th>
-                <th>task</th>
-                <th>duur(min)</th>
-                <th>status</th>
+                <th onclick="sortTable(1)" class="sort">task</th>
+                <th onclick="sortTable(2)" class="sort">duur(min)</th>
+                <th onclick="sortTable(3)" class="sort">status</th>
                 <th>Acties</th>
             </tr>
         </thead>

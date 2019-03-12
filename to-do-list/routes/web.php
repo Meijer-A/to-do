@@ -18,9 +18,8 @@ Route::resources([
     'collection' => 'CollectionController',
     'task' => 'TaskController'
 ]);
-Route::get('/task/create/{collection_id}', 'TaskController@create');
-Route::get('/task/{id}/edit/{collection_id}', 'TaskController@edit');
 
+Route::get('/task/create/{collection_id}', 'TaskController@create');
 Route::get('collections/{collectionId}', 'CollectionController@show')->name('showCollection');
 
 Auth::routes();
