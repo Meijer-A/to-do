@@ -49046,7 +49046,7 @@ if (token) {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 /**
- * Echo exposes an expressive API for subscribing to channels and listening
+ * Echo exposes an expressive API for subscribing to channels and Collectionening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
@@ -49148,10 +49148,16 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Program Files (x86)\Ampps\www\to-do-list\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Program Files (x86)\Ampps\www\to-do-list\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Program Files (x86)\Ampps\www\leerjaar2\to-do\to-do-list\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Program Files (x86)\Ampps\www\leerjaar2\to-do\to-do-list\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
 
 /******/ });
+
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(1000, function(){
+        $(this).remove(); 
+    });
+}, 4000); 

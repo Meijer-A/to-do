@@ -5,3 +5,16 @@
         padding: 6px 12px;
     }
 }
+
+td.actions > form {
+    display: inline;
+    float: right;
+
+    button {
+        padding: 0;
+    }
+}
+
+.navbar {
+    padding-left: 0 !important;
+}

@@ -7,7 +7,7 @@
 
     {{ HTML::ul($errors->all()) }}
 
-	{{ Form::open(array('url' => 'list')) }}
+	{{ Form::open(array('url' => 'collection')) }}
 
 		<div class="form-group">
             {{ Form::label('name', 'name') }}

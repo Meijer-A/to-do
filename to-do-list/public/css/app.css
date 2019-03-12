@@ -8,6 +8,19 @@
   padding: 6px 12px;
 }
 
+td.actions > form {
+  display: inline;
+  float: right;
+}
+
+td.actions > form button {
+  padding: 0;
+}
+
+.navbar {
+  padding-left: 0 !important;
+}
+
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateListTable extends Migration
+class CreateCollectionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateListTable extends Migration
      */
     public function up()
     {
-        Schema::create('lists', function (Blueprint $table)
+        Schema::create('Collections', function (Blueprint $table)
         {
             $table->increments('id');
 
@@ -30,7 +30,7 @@ class CreateListTable extends Migration
      */
     public function down()
     {
-        Schema::table('lists', function (Blueprint $table) {
+        Schema::table('Collections', function (Blueprint $table) {
             //
         });
     }

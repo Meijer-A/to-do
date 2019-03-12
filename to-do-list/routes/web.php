@@ -11,13 +11,17 @@
 |
 */
 
-Route::get('/', 'Listcontroller@index');
-Route::get('/task', 'Taskcontroller@index');
+Route::get('/', 'CollectionController@index');
+Route::get('/task', 'TaskController@index');
 
 Route::resources([
-    'list' => 'Listcontroller',
-    'task' => 'Taskcontroller'
+    'collection' => 'CollectionController',
+    'task' => 'TaskController'
 ]);
+Route::get('/task/create/{collection_id}', 'TaskController@create');
+Route::get('/task/{id}/edit/{collection_id}', 'TaskController@edit');
+
+Route::get('collections/{collectionId}', 'CollectionController@show')->name('showCollection');
 
 Auth::routes();
 

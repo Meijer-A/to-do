@@ -17,6 +17,7 @@ class CreateTaskTable extends Migration
             
             $table->increments('id');
 
+            $table->integer('collection_id');
             $table->string('description', 255);
             $table->integer('duration');
             $table->enum('status',['open', 'in progress', 'done']);

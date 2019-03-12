@@ -5,39 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Illuminate\Http\Request;
-use App\Tasks;
+use App\Collection;
+use App\Task;
 use Session;
 
 
-class taskController extends Controller
+class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $tasks = Tasks::all();
-        return view('to-do.index',compact('tasks'));
+        $tasks = Task::all();
+        return view('task.index',compact('tasks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create($collection_id)
     {
-        //
+        return view('task.create',compact('collection_id'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $rules = array(
@@ -49,63 +34,69 @@ class taskController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return redirect('list/create')
+            return redirect('task/create')
                         ->withErrors($validator)
                         ->withInput();
         } else {
-            $lists = new Tasks;
-            $lists->description       = Input::get('name');
-            $lists->duration       = Input::get('name');
-            $lists->status       = Input::get('name');
-            $lists->save();
+            $task = new Task;
+            $task->collection_id = $request->collection_id;
+            $task->description = Input::get('description');
+            $task->duration = Input::get('duration');
+            $task->status = Input::get('status');
+            $task->save();
 
-            Session::flash('message', $lists->title .' is aangemaakt :)');
-            return redirect('list');
+            Session::flash('message', $task->description .' is aangemaakt :)');
+            return redirect(Route('showCollection', array($request->collection_id)));
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $task = Task::find($id);
+        return view('task.show',compact('task'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $task = Task::find($id);
+        return view('task.edit',compact('task'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $rules = array(
+            'description'       => 'required',
+            'duration'       => 'required',
+            'status'       => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return redirect('task/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        } else {
+            $task = Task::find($id);
+            $task->description = Input::get('description');
+            $task->duration = Input::get('duration');
+            $task->status = Input::get('status');
+            $collection_id = $task->collection_id;
+            $task->save();
+
+            Session::flash('message', $task->description .' is up to date :)');
+            return redirect(Route('showCollection', array($collection_id)));
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        $task = task::find($id);
+        $collection_id = $task->collection_id;
+        $task->delete();
+
+        Session::flash('message', $task->description .' is verwijderd :)');
+        return redirect(Route('showCollection', array($collection_id)));
     }
 }
